@@ -5,19 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="scss/main.scss" rel="stylesheet">
-    <script src="js/main.js" type="module"></script>
-    <script src="js/models/list.js" type="module"></script>
+    <script src="js/main.js" type="module"defer></script>
+    <!-- <script src="js/models/list.js" type="module"></script> -->
     <title>Document</title>
 </head>
 <body>
-    <main class="container" id="container">
-        <article class ="container__box" id="box">
-            <h1 class="container__box__title" id="title"></h1>
-            <ul class="container__box__list" id="list">
-                <li class="container__box__list__subjects" id="subjects"></li>
-            </ul>
-        </article>
-    </main>
-    
+    <article>
+        <h1>Todo list</h1>
+    </article>
+    <section class="form-container"></section>
+    <section class="container">
+        <ul class="container__list"></ul>
 </body>
+
 </html>

@@ -1,0 +1,16 @@
+@use "variables" as v;
+
+@mixin flex{
+ display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+
+@mixin buttons{
+    width: 50%;
+    min-height: 10rem;
+    background-color: #fff;
+    cursor: pointer;
+}

@@ -1,78 +1,158 @@
-let firstName = "Henrietta";
-console.log(firstName);
+/** @format */
 
+// hämtar DOM
+let container =
+  document.querySelector(
+    ".container"
+  );
+let myList =
+  document.querySelector(
+    ".container__list"
+  );
+let sectionForm =
+  document.querySelector(
+    ".form-container"
+  );
 
-let container = document.createElement ("div");
-let box = document.createElement ("article");
+// min arrayList början tomt
+const myArray = [];
 
-function listObjects() {
-    let ul = document.createElement("ul");
-    let toDo = ["Vakna", "Plugga", "Ta en promenad", "Vila"];
-    for (let i = 0; i < toDo.length; i++){
-        let li = document.createElement("li");
-        li.innerHTML = toDo[i]
-        ul.appendChild(li);
-        console.log(toDo[i]);
-      };
+// skaper min form
+const form =
+  document.createElement(
+    "form"
+  );
+sectionForm.appendChild(
+  form
+);
+form.classList.add(
+  "form-container__form"
+);
+const input =
+  document.createElement(
+    "input"
+  );
+form.appendChild(
+  input
+);
+input.classList.add(
+  "form-container__form__input"
+);
+input.type = "text";
+input.name =
+  "task-Input";
+input.placeholder =
+  "Add a task";
+const addButton =
+  document.createElement(
+    "button"
+  );
+addButton.classList.add(
+  "form-container__addBtn"
+);
+addButton.innerText =
+  "add";
+sectionForm.appendChild(
+  addButton
+);
 
-      document.body.appendChild(ul);
-    //toDo.sort();
+// skapar tager och lopper min array lista
+function createHTML() {
+  // det ska inde dubblikeras
+  myList.innerHTML =
+    "";
+  for (
+    let i = 0;
+    i <
+    myArray.length;
+    i++
+  ) {
+    let todo =
+      document.createElement(
+        "div"
+      ); // skapar en div
+
+    todo.classList.add(
+      "container__list__todo"
+    ); // class name
+    myList.appendChild(
+      todo
+    );
+
+    let item =
+      document.createElement(
+        "li"
+      );
+    item.innerText =
+      myArray[i]; // gör synligt mina input och visar i skärmen
+    item.classList.add(
+      "container__list__todo__item"
+    );
+    todo.appendChild(
+      item
+    );
+
+    completedButton =
+      document.createElement(
+        "button"
+      ); // ska kunna markera mina todo när de är utfärdade
+    completedButton.innerHTML =
+      "completed";
+    completedButton.classList.add(
+      "container__list__todo__item__completedBtn"
+    );
+    todo.appendChild(
+      completedButton
+    );
+    // completedButton.addEventListener ("click");
+
+    deleteButton =
+      document.createElement(
+        "button"
+      );
+    deleteButton.innerHTML =
+      "delete";
+    deleteButton.classList.add(
+      "container__list__todo__item__deleteBtn"
+    ); // ska kunna ta bort en todo i min array lista
+    todo.appendChild(
+      deleteButton
+    );
+  }
 }
-setTimeout(()=>{listObjects()}, 3000);
-//console.log(listObjects);
 
-// for (let i=0; i < toDo.length; i++){
-//     console.log(toDo);
-//     document.createElement("ul").innerHTML = toDo[i];
-//     // create.innerHTML = toDo;
-//     // toDo.textContent = toDo;
-// };
+// skapar en fukntion för att kunna skapas en todo
+function addTodoList(
+  event
+) {
+  event.preventDefault();
+  // let addedTodo =
+  //   myArray[
+  //     input.value
+  //   ];
 
+  if (
+    input.value ===
+    ""
+  ) {
+    // förhindrar att lägga någon tomt input i min lista
+    alert(
+      "Plase add task"
+    );
+    return false;
+  } else {
+    myArray.push(
+      input.value
+    ); // lägger i min lista
 
-// container.appendChild(box);
-// box.className = "box";
-
-// container.appendChild(listObjects1)
-// container.appendChild(listObjects2)
-// container.appendChild(listObjects3)
-// container.appendChild(listObjects4)
-// container.appendChild(listObjects5)
-//listObjects.className = "box__titleOfList__listObjects"
-//document.body.appendChild(container);
-
-
-//let titleOfList = document.createElement ("h3");
-// let listObjects = document.createElement ("ul");
-// let listObjects1 = document.createElement ("ul");
-// let listObjects2 = document.createElement ("ul");
-// let listObjects3 = document.createElement ("ul");
-// let listObjects4 = document.createElement ("ul");
-// let listObjects5 = document.createElement ("ul");
-//element.innerHTML = container[i].box;
-
-//let toDo = ["Vakna", "Dricka kaffe", "Åka pendeltåg", "Mata katterna", "Kolla på Bachelor"];
-//container.appendChild(titleOfList);
-//titleOfList.textContent = ("Vad jag vill hinna med idag:");
-
-
-// listObjects.textContent = "Grejerna";
-// listObjects1.textContent = "Grej 1";
-// listObjects2.textContent = "Grej 2";
-// listObjects3.textContent = "Grej 3";
-// listObjects4.textContent = "Grej 4";
-// listObjects5.textContent = "Grej 5";
-
-
-
-
-// console.log(listObjects.innerHTML);
-// console.log(listObjects1.innerHTML);
-// console.log(listObjects2.innerHTML);
-// console.log(listObjects3.innerHTML);
-// console.log(listObjects4.innerHTML);
-// console.log(listObjects5.innerHTML);
-
-
-
-//addEventListener.container(()=>{handleClick(listObjects[i])})
-
+    createHTML(); // hämtar mina tager och skapar nya tager för varje todo
+    // tomma inputet för varje input
+    input.value =
+      "";
+  }
+}
+// kopplar add todo i add knappen
+addButton.addEventListener(
+  "click",
+  addTodoList
+);
