@@ -3,6 +3,7 @@
 //     console.log("Du klickade på något...");
 // }
 
+//localStorage.setItem('myCat', 'Tom');
 
 // ul.className ="ul";
 //setTimeout(()=>{listObjects()}, 3000);

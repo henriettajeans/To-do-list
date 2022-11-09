@@ -1,6 +1,19 @@
+@use  "mixins" as m;
 
 article{
     padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid red;
+    border-radius: 300px;
 
+
+    h1{
+        color: green;
+        padding: 20px;
+        border: 1px solid blue;
+        border-radius: 50px;
+    }
     
 }

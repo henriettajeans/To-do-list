@@ -10,4 +10,22 @@ body{
 .form-container{
  margin-top: 30px;
 @include m.flex;
+&__form{
+}
+
+    .container__list__todo__item{
+    margin: 20px;
+    margin-top: 40px;
+    border: 1px solid grey;
+    
+    @include m.flex;
+}
+    .container__list__todo__item{
+    &__completedBtn{
+    @include m.flex;
+}
+    &__deleteBtn{
+    @include m.flex;
+}
+}
 }
