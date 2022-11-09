@@ -1,5 +1,7 @@
 /** @format */
 
+import { Todos } from "./models/object";
+
 // hämtar DOM
 let container = document.querySelector(".container");
 let myList = document.querySelector(".container__list");
@@ -34,7 +36,7 @@ function createHTML() {
     myList.appendChild(todo);
 
     let item = document.createElement("li");
-    item.innerText = myArray[i]; // gör synligt mina input och visar i skärmen
+    item.innerText = myArray[i].todoTask; // gör synligt mina input och visar i skärmen
     item.classList.add("container__list__todo__item");
     todo.appendChild(item);
 
@@ -48,23 +50,23 @@ function createHTML() {
     deleteButton.innerHTML = "delete";
     deleteButton.classList.add("container__list__todo__item__deleteBtn"); // ska kunna ta bort en todo i min array lista
     todo.appendChild(deleteButton);
+
+    deleteButton.addEventListener("click", () => {
+      deleteFromLs(i);
+    });
   }
 }
 
 // skapar en fukntion för att kunna skapas en todo
 function addTodoList(event) {
   event.preventDefault();
-  // let addedTodo =
-  //   myArray[
-  //     input.value
-  //   ];
+  let myAddedTask = new Todos(input.value); // förhindrar att lägga någon tomt input i min lista
 
   if (input.value === "") {
-    // förhindrar att lägga någon tomt input i min lista
     alert("Plase add task");
     return false;
   } else {
-    myArray.push(input.value); // lägger i min lista
+    myArray.push(myAddedTask); // lägger i min lista
     saveTolocalStorage(); //sparar till local storage med hjälp av funktionen nedan
     createHTML(); // hämtar mina tager och skapar nya tager för varje todo
     // tomma inputet för varje input
@@ -74,7 +76,25 @@ function addTodoList(event) {
 // kopplar add todo i add knappen
 addButton.addEventListener("click", addTodoList);
 
+// få listan from local Storage
+function getTodoFromLocalStorage() {
+  myArray = JSON.parse(localStorage.getItem("myArray"));
+}
+
+document.addEventListener("load", getTodoFromLocalStorage);
+
+// sparar i local Stora
 function saveTolocalStorage() {
   let mylS = JSON.stringify(myArray);
   localStorage.setItem("myArray", mylS);
+}
+
+function deleteTodo(e) {
+  let myTodo;
+}
+
+function deleteFromLs(index) {
+  myArray.splice(index, 1);
+  saveTolocalStorage();
+  createHTML();
 }

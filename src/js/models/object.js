@@ -1,6 +1,6 @@
 /** @format */
 
-class toDo {
+export class Todos {
   constructor(todoTask, completed) {
     this.todoTask = todoTask;
     this.completed = false;
