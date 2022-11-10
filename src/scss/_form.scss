@@ -5,43 +5,77 @@ body{
     height: 100vh;
     width: 100%;
     background-color: lightblue;
+    //border: 5px solid lightseagreen;
+    border-radius: 50px;
 }
 .container {
     @include m.flex;
     height: 50%;
-    margin: 50px;
+    margin: 10px;
+    border: 1px solid lightsteelblue;
+    background-color: lightsteelblue;
+    border-radius: 40px;
 
     &__list{
         width: 400px;
         padding: 20px;
         margin: 20px;
-        border: 3px solid coral;
+        border: 3px solid lightgray;
+        border-radius: 30px;
+        background-color: lightcyan;
+        color: lightseagreen;
         @include m.flex;
     }
     &__list__todo__item{
-        border: 1px solid darkblue;
-        background-color: aquamarine;
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        background-color: white;
+        padding: 10px;
         margin: 4px;
         list-style: none;
+        font-size: 30px;
+        font-family: 'Courier New', Courier, monospace;
+        
+
         &__completedBtn{
             height: 90px;
             width: 140px;
-    }
+            font-size: 30px;
+            border: 3px solid lightcyan;
+            border-radius: 30px;
+            background-color: lightcyan;
+        
+        }
         &__deleteBtn{
             height:90px;
             width:140px;
-    }
+            font-size: 30px;
+            border: 3px solid lightcyan;
+            border-radius: 30px;
+            background-color: lightcyan;
+        }
+      
+  
     }
 }
 
 .form-container{
  margin-top: 30px;
+ background-color: lightsteelblue;
+ border: 3px solid lightsteelblue;
+ border-radius: 60px;
+ padding: 10px;
 @include m.flex;
 
     &__addBtn{
         height: 40px;
         width: 300px;
         border-radius: 40px;
+        font-size: 30px;
+        color: lightseagreen;
+        background-color: lightsteelblue;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        
     }
     &__form{
     @include m.flex;
@@ -56,10 +90,25 @@ body{
         width: 200px;
     margin: 20px;
     margin-top: 40px;
-    border: 1px solid grey;
+    border: 1px solid lightsteelblue;
+    background-color: lightsteelblue;
     
     
 }
 }
 }
+
+.completed{
+    text-decoration: line-through;
+    -webkit-text-decoration: line-through;
+    font-style: italic;
+    -webkit-font-style: italic;
+    color: lightgrey;
+    -webkit-font-color: lightgrey;
+    text-decoration-color:red;
+    -webkit-text-decoration-color:red;
+    
+
+}
+
 

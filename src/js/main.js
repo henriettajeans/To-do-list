@@ -22,11 +22,11 @@ input.name = "task-Input";
 input.placeholder = "Add a task";
 const addButton = document.createElement("button");
 addButton.classList.add("form-container__addBtn");
-addButton.innerText = "add";
+addButton.innerText = "Add to list";
 sectionForm.appendChild(addButton);
 
 // skapar tager och lopper min array lista
-function createHTML() {
+function displayHTML() {
   // det ska inde dubblikeras
   myList.innerHTML = "";
   for (let i = 0; i < myArray.length; i++) {
@@ -41,18 +41,20 @@ function createHTML() {
     todo.appendChild(item);
 
     completedButton = document.createElement("button"); // ska kunna markera mina todo när de är utfärdade
-    completedButton.innerHTML = "completed";
+    completedButton.innerHTML = "✅";
     completedButton.classList.add("container__list__todo__item__completedBtn");
     todo.appendChild(completedButton);
-    // completedButton.addEventListener ("click");
+    // completedButton.addEventListener("click", completeTodo);
 
     deleteButton = document.createElement("button");
-    deleteButton.innerHTML = "delete";
+    deleteButton.innerHTML = "🗑";
     deleteButton.classList.add("container__list__todo__item__deleteBtn"); // ska kunna ta bort en todo i min array lista
     todo.appendChild(deleteButton);
 
     deleteButton.addEventListener("click", () => {
-      deleteFromLs(i);
+      myArray.splice([i], 1);
+      saveTolocalStorage();
+      displayHTML();
     });
   }
 }
@@ -68,7 +70,7 @@ function addTodoList(event) {
   } else {
     myArray.push(myAddedTask); // lägger i min lista
     saveTolocalStorage(); //sparar till local storage med hjälp av funktionen nedan
-    createHTML(); // hämtar mina tager och skapar nya tager för varje todo
+    displayHTML(); // hämtar mina tager och skapar nya tager för varje todo
     // tomma inputet för varje input
     input.value = "";
   }
@@ -79,6 +81,8 @@ addButton.addEventListener("click", addTodoList);
 // få listan from local Storage
 function getTodoFromLocalStorage() {
   myArray = JSON.parse(localStorage.getItem("myArray"));
+  saveTolocalStorage();
+  displayHTML();
 }
 
 document.addEventListener("load", getTodoFromLocalStorage);
@@ -88,13 +92,14 @@ function saveTolocalStorage() {
   let mylS = JSON.stringify(myArray);
   localStorage.setItem("myArray", mylS);
 }
+// }
 
-function deleteTodo(e) {
-  let myTodo;
+function completeTodo(e) {
+  let myDoneTask = e.target;
+  if (myDoneTask.classList[0] === "container__list__todo__item__completedBtn") {
+    let todo = myDoneTask.parentElement;
+    todo.classList.toggle("completed");
+  }
 }
 
-function deleteFromLs(index) {
-  myArray.splice(index, 1);
-  saveTolocalStorage();
-  createHTML();
-}
+myList.addEventListener("click", completeTodo);
