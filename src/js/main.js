@@ -7,10 +7,10 @@ let container = document.querySelector(".container");
 let myList = document.querySelector(".container__list");
 let sectionForm = document.querySelector(".form-container");
 
-// min arrayList början tomt
+// min arrayList ska från början vara tom
 const myArray = [];
 
-// skaper min form
+// skapar mitt form
 const form = document.createElement("form");
 sectionForm.appendChild(form);
 form.classList.add("form-container__form");
@@ -25,7 +25,7 @@ addButton.classList.add("form-container__addBtn");
 addButton.innerText = "Add to list";
 sectionForm.appendChild(addButton);
 
-// skapar tager och lopper min array lista
+// skapar taggra och loopar min lista
 function displayHTML() {
   // det ska inde dubblikeras
   myList.innerHTML = "";
@@ -36,7 +36,7 @@ function displayHTML() {
     myList.appendChild(todo);
 
     let item = document.createElement("li");
-    item.innerText = myArray[i].todoTask; // gör synligt mina input och visar i skärmen
+    item.innerText = myArray[i].todoTask; // gör mina input synliga och visar i skärmen
     item.classList.add("container__list__todo__item");
     todo.appendChild(item);
 
@@ -48,7 +48,7 @@ function displayHTML() {
 
     deleteButton = document.createElement("button");
     deleteButton.innerHTML = "🗑";
-    deleteButton.classList.add("container__list__todo__item__deleteBtn"); // ska kunna ta bort en todo i min array lista
+    deleteButton.classList.add("container__list__todo__item__deleteBtn"); // ska kunna ta bort en todo i min lista
     todo.appendChild(deleteButton);
 
     deleteButton.addEventListener("click", () => {
@@ -59,10 +59,10 @@ function displayHTML() {
   }
 }
 
-// skapar en fukntion för att kunna skapas en todo
+// skapar en fukntion - för att kunna skapa en todo
 function addTodoList(event) {
   event.preventDefault();
-  let myAddedTask = new Todos(input.value); // förhindrar att lägga någon tomt input i min lista
+  let myAddedTask = new Todos(input.value); // förhindrar att lägga till en tom input
 
   if (input.value === "") {
     alert("Plase add task");
@@ -70,15 +70,15 @@ function addTodoList(event) {
   } else {
     myArray.push(myAddedTask); // lägger i min lista
     saveTolocalStorage(); //sparar till local storage med hjälp av funktionen nedan
-    displayHTML(); // hämtar mina tager och skapar nya tager för varje todo
-    // tomma inputet för varje input
+    displayHTML(); // hämtar mina taggar och skapar nya taggar för varje todo
+    // tömma inputet för varje input
     input.value = "";
   }
 }
 // kopplar add todo i add knappen
 addButton.addEventListener("click", addTodoList);
 
-// få listan from local Storage
+// få listan från local Storage
 function getTodoFromLocalStorage() {
   myArray = JSON.parse(localStorage.getItem("myArray"));
   saveTolocalStorage();
@@ -87,7 +87,7 @@ function getTodoFromLocalStorage() {
 
 document.addEventListener("load", getTodoFromLocalStorage);
 
-// sparar i local Stora
+// sparar i localStorage
 function saveTolocalStorage() {
   let mylS = JSON.stringify(myArray);
   localStorage.setItem("myArray", mylS);
