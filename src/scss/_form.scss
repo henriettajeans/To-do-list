@@ -3,18 +3,24 @@
 body{
     margin: 0auto;
     height: 100vh;
-    width: 100%;
+    width: 90%;
     background-color: lightblue;
     //border: 5px solid lightseagreen;
     border-radius: 50px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 .container {
     @include m.flex;
     height: 50%;
+    width: 90%;
+
+    margin-left: 10%;
     margin: 10px;
     border: 1px solid lightsteelblue;
     background-color: lightsteelblue;
-    border-radius: 40px;
+    border-radius: 60px;
 
     &__list{
         width: 400px;
@@ -61,6 +67,7 @@ body{
 
 .form-container{
  margin-top: 30px;
+ width: 90%;
  background-color: lightsteelblue;
  border: 3px solid lightsteelblue;
  border-radius: 60px;

@@ -2,12 +2,14 @@
 
 article{
     padding: 30px;
+    width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 2px solid lightskyblue;
     background-color: lightsteelblue;
     border-radius: 45px;
+    @include m.flex;
 
 
     h1{
