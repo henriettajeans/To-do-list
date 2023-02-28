@@ -8,7 +8,7 @@ let myList = document.querySelector(".container__list");
 let sectionForm = document.querySelector(".form-container");
 
 // min arrayList ska från början vara tom
-let myArray = [];
+const myArray = [];
 
 // skapar mitt form
 const form = document.createElement("form");
@@ -80,7 +80,11 @@ addButton.addEventListener("click", addTodoList);
 
 // få listan från localStorage
 const getTodoFromLocalStorage = () => {
-  myArray = JSON.parse(localStorage.getItem("myArray"));
+  if (localStorage.getItem("MyArray") === null || "") {
+    myArray = "";
+  } else {
+    myArray = JSON.parse(localStorage.getItem("myArray"));
+  }
   displayHTML();
 };
 
